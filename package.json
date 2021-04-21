@@ -1,6 +1,6 @@
 {
     "name": "express-oauth2-helper",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "express oauth2 helper",
     "main": "src/index.js",
     "scripts": {
