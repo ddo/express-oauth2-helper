@@ -1,12 +1,12 @@
 {
-    "name": "express-oauth2",
+    "name": "express-oauth2-helper",
     "version": "0.0.1",
     "description": "express oauth2 helper",
     "main": "src/index.js",
     "scripts": {
         "example": "node example.js"
     },
-    "repository": "git@github.com:ddo/express-oauth2.git",
+    "repository": "git@github.com:ddo/express-oauth2-helper.git",
     "author": "ddo <itsanope@icloud.com>",
     "license": "Apache-2.0",
     "devDependencies": {
