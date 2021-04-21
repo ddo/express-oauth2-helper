@@ -47,7 +47,7 @@ module.exports = opt => {
         try {
             const data = await exchange(opt, code)
             if (opt.hook) {
-                await hook(opt, data)
+                opt.hook(opt, data)
             }
 
             res.send(true)
@@ -66,7 +66,7 @@ module.exports = opt => {
         try {
             const data = await refresh(opt, refresh_token)
             if (opt.hook) {
-                await hook(opt, data)
+                opt.hook(opt, data)
             }
 
             res.send(true)
@@ -116,22 +116,6 @@ async function refresh(opt, refresh_token) {
     const res = await fetch(opt.url_token, {
         method: 'POST',
         body: params,
-    })
-    const data = await res.json()
-
-    if (res.status !== 200)
-        throw new Error(data.error_description || data.error)
-
-    return data
-}
-
-async function hook(opt, token) {
-    const res = await fetch(opt.hook, {
-        method: 'POST',
-        body: JSON.stringify(token),
-        headers: {
-            'content-type': 'application/json',
-        },
     })
     const data = await res.json()
 

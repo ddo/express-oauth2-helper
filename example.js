@@ -1,4 +1,5 @@
 require('dotenv').config()
+const fetch = require('node-fetch')
 
 const express = require('express')
 const app = express()
@@ -11,7 +12,7 @@ const discord = require('.')({
     url_auth: process.env.DISCORD_URL_AUTH,
     url_token: process.env.DISCORD_URL_TOKEN,
     url_redirect: process.env.DISCORD_URL_REDIRECT,
-    hook: 'http://httpbin.org/post',
+    hook,
 })
 
 app.use('/discord', discord)
@@ -24,3 +25,16 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
     console.log(`OAUTH example listening at localhost:${port}/discord`)
 })
+
+async function hook(token) {
+    const res = await fetch('http://httpbin.org/post', {
+        method: 'POST',
+        body: JSON.stringify(token),
+        headers: {
+            'content-type': 'application/json',
+        },
+    })
+    const data = await res.json()
+    console.log(res.status)
+    console.log(data)
+}
