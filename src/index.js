@@ -56,7 +56,7 @@ module.exports = opt => {
         }
     })
 
-    app.get('/refresh', async (req, res) => {
+    app.get('/refresh', async (req, res, next) => {
         const refresh_token = req.query.refresh_token
         if (!refresh_token) {
             next({ status: 400, msg: 'no refresh token' })
