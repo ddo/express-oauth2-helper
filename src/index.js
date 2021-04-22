@@ -47,10 +47,10 @@ module.exports = opt => {
         try {
             const data = await exchange(opt, code)
             if (opt.hook) {
-                opt.hook(opt, data)
+                opt.hook(data)
             }
 
-            res.send(true)
+            res.send(data)
         } catch (err) {
             next({ status: 500, msg: err })
         }
@@ -66,10 +66,10 @@ module.exports = opt => {
         try {
             const data = await refresh(opt, refresh_token)
             if (opt.hook) {
-                opt.hook(opt, data)
+                opt.hook(data)
             }
 
-            res.send(true)
+            res.send(data)
         } catch (err) {
             next({ status: 500, msg: err })
         }
